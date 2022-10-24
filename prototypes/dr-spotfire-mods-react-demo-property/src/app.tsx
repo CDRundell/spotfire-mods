@@ -1,10 +1,12 @@
 import React from "react";
 import { AnalysisProperty } from "spotfire-api";
+import { Test } from './components/test'
 
 export interface AppProps {
     currentProperty: string;
     properties: AnalysisProperty[];
     showProperties: (x: number, y: number) => void;
+    rest: any
 }
 
 export function App(props: AppProps) {
@@ -12,6 +14,7 @@ export function App(props: AppProps) {
         <div>
             <DropDown text={props.currentProperty} onClick={props.showProperties} />
             <EditMenu {...props} key={props.currentProperty} />
+            <Test {...props} />
         </div>
     );
 }
@@ -60,7 +63,7 @@ function EditMenu(props: AppProps) {
 
     return (
         <div>
-            {property.name} 
+            {property.name}
             <input
                 defaultValue={property.value<string>()!}
                 onBlur={(e) => {
