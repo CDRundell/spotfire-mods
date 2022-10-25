@@ -9,17 +9,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./app";
-import { AnalysisProperty, ModProperty } from "spotfire-api";
+import { AnalysisProperty, ModProperty, DataView } from "spotfire-api";
+
 
 const root = document.querySelector("#app");
 
 window.Spotfire.initialize(async (mod) => {
     let context = mod.getRenderContext();
-    let reader = mod.createReader(mod.document.properties(), mod.property("propertyName"));
+    let reader = mod.createReader(mod.visualization.data(), mod.document.properties(), mod.property("propertyName"));
 
-    reader.subscribe(async function render(properties: AnalysisProperty[], currentProperty: ModProperty) {
-        console.log("onChange", properties, currentProperty.value());
-        
+    reader.subscribe(async function render(dataView: DataView, properties: AnalysisProperty[], currentProperty: ModProperty ) {
+
         ReactDOM.render(
             <App
                 {...{
@@ -32,6 +32,23 @@ window.Spotfire.initialize(async (mod) => {
         );
 
         context.signalRenderComplete();
+
+      let rows = await dataView.allRows()
+      console.log(rows)
+      rows?.slice(0,1).map(row => {
+        console.log(row.categorical("X").value())
+        // console.log(Object.values(row))
+      })
+
+      // rows?.forEach(row => {
+      //   console.log(axes.map(axis => {
+      //     if (axis.isCategorical) {
+      //       return row.categorical(axis.name).formattedValue()
+      //     }
+      //     return row.continuous(axis.name).value()
+      //   }).join(","));
+
+      // });
 
         async function showProperties(x: number, y: number) {
             let value = await mod.controls.contextMenu.show(
