@@ -19,13 +19,14 @@ window.Spotfire.initialize(async (mod) => {
     let reader = mod.createReader(mod.visualization.data(), mod.document.properties(), mod.property("propertyName"));
 
     reader.subscribe(async function render(dataView: DataView, properties: AnalysisProperty[], currentProperty: ModProperty ) {
-
+      let rows = await dataView.allRows()
         ReactDOM.render(
             <App
                 {...{
                     properties: properties,
                     currentProperty: currentProperty.value() + "",
                     showProperties,
+                    rows
                 }}
             />,
             root
@@ -33,12 +34,12 @@ window.Spotfire.initialize(async (mod) => {
 
         context.signalRenderComplete();
 
-      let rows = await dataView.allRows()
-      console.log(rows)
-      rows?.slice(0,1).map(row => {
-        console.log(row.categorical("X").value())
-        // console.log(Object.values(row))
-      })
+      // let rows = await dataView.allRows()
+      // console.log(rows)
+      // rows?.slice(0,1).map(row => {
+      //   console.log(row.categorical("X").value())
+      //   // console.log(Object.values(row))
+      // })
 
       // rows?.forEach(row => {
       //   console.log(axes.map(axis => {
