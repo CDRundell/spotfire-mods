@@ -34,23 +34,6 @@ window.Spotfire.initialize(async (mod) => {
 
         context.signalRenderComplete();
 
-      // let rows = await dataView.allRows()
-      // console.log(rows)
-      // rows?.slice(0,1).map(row => {
-      //   console.log(row.categorical("X").value())
-      //   // console.log(Object.values(row))
-      // })
-
-      // rows?.forEach(row => {
-      //   console.log(axes.map(axis => {
-      //     if (axis.isCategorical) {
-      //       return row.categorical(axis.name).formattedValue()
-      //     }
-      //     return row.continuous(axis.name).value()
-      //   }).join(","));
-
-      // });
-
         async function showProperties(x: number, y: number) {
             let value = await mod.controls.contextMenu.show(
                 x,

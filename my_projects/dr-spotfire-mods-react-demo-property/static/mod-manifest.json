@@ -33,6 +33,11 @@
         "name": "Y",
         "mode": "dual",
         "placement": "none"
+      },
+      {
+        "name": "Z",
+        "mode": "dual",
+        "placement": "none"
       }
     ]
   },
