@@ -1,6 +1,7 @@
 import React from "react";
 import { AnalysisProperty } from "spotfire-api";
 import { CompoundList } from './components/CompoundList'
+import { SearchBar } from './components/SearchBar'
 
 export interface AppProps {
     currentProperty: string;
@@ -10,6 +11,9 @@ export interface AppProps {
 
 export function App(props: AppProps) {
     return (
-            <CompoundList {...props} />
+      <div style={{textAlign: "center"}}>
+        <SearchBar />
+        <CompoundList {...props} />
+      </div>
     );
 }
