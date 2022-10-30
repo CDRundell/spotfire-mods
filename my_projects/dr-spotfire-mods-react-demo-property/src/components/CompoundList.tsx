@@ -2,31 +2,29 @@ import React from 'react'
 import Compound from './Compound'
 
 class CompoundList extends React.Component<any, any> {
+
+  handleContinousAxis = (axisName:any, row:any) => {
+    const contVal = Object.values(row.continuous(axisName))
+    return contVal[0]
+  }
+
+  handleCategoricalAxis = (axisName:any, row:any) => {
+    return row.categorical(axisName).value()[0].key
+  }
+
   render() {
-    let { rows, axisList } = this.props
-    console.log(axisList)
-
-
+    const { rows, axes } = this.props
 
     return (
       rows.slice(0,3).map((row: any) => {
-        const xVals = row.categorical("X").value()[0].key
-        const yVals = Object.values(row.continuous("Y"))
-        // const stringVal:any = yVals[0]
-        const zVals = Object.values(row.categorical("Z"))
-        // let zValsTwo: any = zVals[0]
+        const rowObject: any = {}
+
+        axes.forEach((axis: any) => {
+          rowObject[axis.name] = axis.isCategorical ? this.handleCategoricalAxis(axis.name, row) : this.handleContinousAxis(axis.name, row)
+        })
 
         return (
-            // {/* <p>Row # {xVals }</p>
-            // <p>{ stringVal }</p>
-            // <p>{ zValsTwo[0].value() }</p> */}
-            <Compound
-              {
-                ...{xVals: xVals,
-                   yVals: yVals,
-                    zVals: zVals}
-              }
-            />
+          <Compound {...rowObject} />
         )
       })
     )

@@ -20,11 +20,8 @@ window.Spotfire.initialize(async (mod) => {
 
     reader.subscribe(async function render(dataView: DataView, properties: AnalysisProperty[], currentProperty: ModProperty ) {
       const axes = await dataView.axes()
-      const axisList: string[] = []
-      axes.forEach(axis => {
-        axisList.push(axis.name)
-      })
       let rows = await dataView.allRows()
+
         ReactDOM.render(
             <App
                 {...{
@@ -32,7 +29,7 @@ window.Spotfire.initialize(async (mod) => {
                     currentProperty: currentProperty.value() + "",
                     showProperties,
                     rows,
-                    axisList
+                    axes
                 }}
             />,
             root

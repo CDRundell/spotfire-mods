@@ -8,13 +8,12 @@ interface Compound {
 
 class Compound extends React.Component<any, any, any> {
   render () {
-    const { xVals, yVals, zVals } = this.props
-    // console.log(zVals[0][0].value())
+    const { X, Y, Z } = this.props
     return (
       <div style={{backgroundColor: "red", padding: "8px", margin: "16px", color: "peachpuff", borderRadius: "8px" }}>
-        <p>{ xVals }</p>
-        <p>{ yVals[0] }</p>
-        <p>{ zVals[0][0].value() }</p>
+        <p>{ X }</p>
+        <p>{ Y }</p>
+        <p>{ Z }</p>
       </div>
     )
   }
