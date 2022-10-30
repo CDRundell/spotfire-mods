@@ -3,7 +3,10 @@ import Compound from './Compound'
 
 class CompoundList extends React.Component<any, any> {
   render() {
-    let { rows } = this.props
+    let { rows, axisList } = this.props
+    console.log(axisList)
+
+
 
     return (
       rows.slice(0,3).map((row: any) => {
