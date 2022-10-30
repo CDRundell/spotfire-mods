@@ -13,19 +13,22 @@ class CompoundList extends React.Component<any, any> {
   }
 
   render() {
-    const { rows, axes } = this.props
+    const { rows, axes, searchQuery } = this.props
 
     return (
-      rows.slice(0,2).map((row: any, index:number) => {
+      rows.map((row: any, index:number) => {
         const rowObject: any = {}
         rowObject["hexCode"] = row.color().hexCode
         axes.forEach((axis: any) => {
           rowObject[axis.name] = axis.isCategorical ? this.handleCategoricalAxis(axis.name, row) : this.handleContinousAxis(axis.name, row)
         })
 
-        return (
-          <Compound {...rowObject} key={index} />
-        )
+        const rowVals:string[] = Object.values(rowObject)
+        if (rowVals.find(rowVal => rowVal === searchQuery)) {
+          return (
+            <Compound {...rowObject} key={index} />
+          )
+        }
       })
     )
   }

@@ -6,17 +6,27 @@ import React from 'react'
 
 class SearchBar extends React.Component<any> {
 
-  handleKeyUp = (event:any) => {
-    console.log(event.target.value)
-  }
+  // handleUpdate = (event:any) => {
+  //   console.log(event.target.value)
+  // }
 
+  onEnter = (event:any) => {
+    if (event.key === 'Enter') {
+      const { searchFunction } = this.props
+      searchFunction(event.target.value);
+    }
+  }
 
 
   render () {
     return (
       <div style={{display: "flex", justifyContent: "center"}} >
         <p> Please Input compound #:</p>
-        <input onKeyUp={this.handleKeyUp} placeholder="Search here" />
+        <input
+          // onChange={this.handleUpdate}
+          placeholder="Search here"
+          onKeyDown={this.onEnter}
+         />
       </div>
     )
   }

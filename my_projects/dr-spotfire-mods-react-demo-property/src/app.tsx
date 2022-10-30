@@ -11,11 +11,25 @@ export interface AppProps {
 
 class App extends React.Component <AppProps> {
 
+  constructor (props:any) {
+    super(props)
+
+    this.state = {
+      searchQuery: ""
+    }
+  }
+
+  search = (query:string) => {
+    this.setState({
+      searchQuery: query
+    })
+  }
+
   render () {
     return (
       <div style={{ textAlign: "center" }}>
-        <SearchBar />
-        <CompoundList {...this.props} />
+        <SearchBar searchFunction={this.search} />
+        <CompoundList {...this.props} {...this.state} />
       </div>
 
     )
