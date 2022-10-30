@@ -16,9 +16,9 @@ class CompoundList extends React.Component<any, any> {
     const { rows, axes } = this.props
 
     return (
-      rows.slice(0,3).map((row: any) => {
+      rows.slice(0,1).map((row: any) => {
         const rowObject: any = {}
-
+        rowObject["hexCode"] = row.color().hexCode
         axes.forEach((axis: any) => {
           rowObject[axis.name] = axis.isCategorical ? this.handleCategoricalAxis(axis.name, row) : this.handleContinousAxis(axis.name, row)
         })
