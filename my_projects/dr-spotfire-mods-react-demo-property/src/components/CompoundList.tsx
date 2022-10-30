@@ -16,7 +16,7 @@ class CompoundList extends React.Component<any, any> {
     const { rows, axes } = this.props
 
     return (
-      rows.slice(0,1).map((row: any) => {
+      rows.slice(0,2).map((row: any, index:number) => {
         const rowObject: any = {}
         rowObject["hexCode"] = row.color().hexCode
         axes.forEach((axis: any) => {
@@ -24,7 +24,7 @@ class CompoundList extends React.Component<any, any> {
         })
 
         return (
-          <Compound {...rowObject} />
+          <Compound {...rowObject} key={index} />
         )
       })
     )

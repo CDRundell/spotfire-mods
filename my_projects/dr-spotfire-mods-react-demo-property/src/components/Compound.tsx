@@ -1,11 +1,5 @@
 import React from 'react'
 
-interface Compound {
-  xVals?: any,
-  yVals?: any,
-  zVals?: any
-}
-
 class Compound extends React.Component<any, any, any> {
   render () {
     const { X, Y, Z, hexCode } = this.props

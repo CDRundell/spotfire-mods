@@ -9,11 +9,17 @@ export interface AppProps {
     showProperties: (x: number, y: number) => void;
 }
 
-export function App(props: AppProps) {
+class App extends React.Component <AppProps> {
+
+  render () {
     return (
-      <div style={{textAlign: "center"}}>
+      <div style={{ textAlign: "center" }}>
         <SearchBar />
-        <CompoundList {...props} />
+        <CompoundList {...this.props} />
       </div>
-    );
+
+    )
+  }
 }
+
+export {App} ;
