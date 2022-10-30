@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "noUnusedLocals": true,
         "allowJs": false,
         "allowUnreachableCode": false,
