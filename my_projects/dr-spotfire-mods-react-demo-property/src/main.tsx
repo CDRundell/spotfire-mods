@@ -11,7 +11,6 @@ import ReactDOM from "react-dom";
 import { App } from "./app";
 import { AnalysisProperty, ModProperty, DataView } from "spotfire-api";
 
-
 const root = document.querySelector("#app");
 
 window.Spotfire.initialize(async (mod) => {
@@ -21,7 +20,10 @@ window.Spotfire.initialize(async (mod) => {
     reader.subscribe(async function render(dataView: DataView, properties: AnalysisProperty[], currentProperty: ModProperty ) {
       const axes = await dataView.axes()
       let rows = await dataView.allRows()
-
+      // showing info of marked part of table, may use later
+      // rows?.forEach((item, index) => {
+      //   item.isMarked() ? console.log(item.leafNode("Z")) : null
+      // })
         ReactDOM.render(
             <App
                 {...{
