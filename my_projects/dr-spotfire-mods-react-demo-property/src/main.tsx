@@ -20,6 +20,11 @@ window.Spotfire.initialize(async (mod) => {
     reader.subscribe(async function render(dataView: DataView, properties: AnalysisProperty[], currentProperty: ModProperty ) {
       const axes = await dataView.axes()
       let rows = await dataView.allRows()
+
+      let signalsProperties = properties.find(item => item.name === "response")
+      let signalsPropertiesVal = signalsProperties?.value()
+
+      // console.log(properties[14].value())
       // showing info of marked part of table, may use later
       // rows?.forEach((item, index) => {
       //   item.isMarked() ? console.log(item.leafNode("Z")) : null
@@ -31,7 +36,8 @@ window.Spotfire.initialize(async (mod) => {
                     currentProperty: currentProperty.value() + "",
                     showProperties,
                     rows,
-                    axes
+                    axes,
+                    signalsPropertiesVal
                 }}
             />,
             root

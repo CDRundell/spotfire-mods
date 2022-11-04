@@ -15,7 +15,7 @@ class App extends React.Component <AppProps> {
     super(props)
 
     this.state = {
-      searchQuery: ""
+      searchQuery: "",
     }
   }
 
@@ -36,4 +36,4 @@ class App extends React.Component <AppProps> {
   }
 }
 
-export {App} ;
+export {App};

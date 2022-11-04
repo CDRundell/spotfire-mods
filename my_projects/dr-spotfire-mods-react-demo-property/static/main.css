@@ -10,7 +10,7 @@
 
 body {
     margin: 0;
-    overflow: hidden;
+    overflow: scroll;
     height: 100vh;
     display: flex;
     flex-direction: row;
@@ -27,7 +27,7 @@ body {
     color: #3050ef;
     border-radius: 5px;
     background: transparent;
-    cursor: pointer;   
+    cursor: pointer;
 } */
 
 .button {
