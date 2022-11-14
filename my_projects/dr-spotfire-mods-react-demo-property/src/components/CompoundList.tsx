@@ -14,6 +14,7 @@ class CompoundList extends React.Component<any, any> {
 
   render() {
     const { rows, axes, searchQuery, signalsPropertiesVal } = this.props
+    // console.log(signalsPropertiesVal)
     console.log(JSON.parse(signalsPropertiesVal).data[0].attributes.products)
 
     return (
