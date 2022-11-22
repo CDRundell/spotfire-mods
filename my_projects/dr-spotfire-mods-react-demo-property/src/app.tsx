@@ -2,6 +2,7 @@ import React from "react";
 import { AnalysisProperty } from "spotfire-api";
 import { CompoundList } from './components/CompoundList'
 // import { SearchBar } from './components/SearchBar'
+import { Header } from './components/Header'
 
 export interface AppProps {
     currentProperty: string;
@@ -28,6 +29,7 @@ class App extends React.Component <AppProps> {
   render () {
     return (
       <div style={{ textAlign: "center" }}>
+        <Header />
         {/* <SearchBar searchFunction={this.search} /> */}
         <CompoundList {...this.props} {...this.state} />
       </div>

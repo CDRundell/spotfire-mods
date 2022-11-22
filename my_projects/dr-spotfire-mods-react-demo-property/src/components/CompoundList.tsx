@@ -36,7 +36,9 @@ class CompoundList extends React.Component<any, any> {
           {propertiesObject.data.pop().attributes.products.map((item:any) => {
             const itemKeys = Object.keys(item)
             return itemKeys.map((key:any) => {
-              return key === "actualMass" || key === "purity" || key ===  'rxnid'  ? <p style={{fontFamily: "Roboto", fontSize: "14px"}}><strong>{key}</strong>: {item[key]}</p> : null
+              return key === "actualMass" || key === "purity" || key ===  'rxnid'
+              ?
+              <p style={{fontFamily: "Roboto", fontSize: "14px"}}><strong>{key}</strong>: {item[key]}</p> : null
             })
           })}
         </div>
