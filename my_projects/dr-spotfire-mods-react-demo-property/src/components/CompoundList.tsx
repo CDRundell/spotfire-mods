@@ -16,16 +16,30 @@ class CompoundList extends React.Component<any, any> {
   render() {
     // const { rows, axes, searchQuery} = this.props
     const { signalsPropertiesVal, signalsImageVal } = this.props
-    console.log(JSON.parse(signalsPropertiesVal))
-    console.log(signalsImageVal.toString().replace(/\\n/g, ' '))
-    // console.log(JSON.parse(signalsPropertiesVal))
-    // console.log(JSON.parse(signalsPropertiesVal).data[0].attributes.products)
+    const propertiesObject = JSON.parse(signalsPropertiesVal)
 
     return (
-      // <img src={`data:image/svg;,${signalsImageVal}`}></img>
-      <div
-        dangerouslySetInnerHTML={{ __html: signalsImageVal.toString().replace(/\\n/g, ' ').replace(/b'/g, ' ').replace(/width="\d+px"/g, " ").replace(/height="\d+px"/g, " ") }}
-      >
+      <div style={{
+                  display:"flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  border: "1px solid #5FA920",
+                  borderRadius: "16px;",
+                  padding: "8px 8px"
+                  }}>
+        <div
+          dangerouslySetInnerHTML=
+            {{ __html: signalsImageVal.toString().replace(/\\n/g, ' ').replace(/b'/g, ' ').replace(/width="\d+px"/g, " ").replace(/height="\d+px"/g, " ") }}
+        >
+        </div>
+        <div style={{display: "flex", justifyContent: "space-evenly"}}>
+          {propertiesObject.data.pop().attributes.products.map((item:any) => {
+            const itemKeys = Object.keys(item)
+            return itemKeys.map((key:any) => {
+              return key === "actualMass" || key === "purity" || key ===  'rxnid'  ? <p style={{fontFamily: "Roboto", fontSize: "14px"}}><strong>{key}</strong>: {item[key]}</p> : null
+            })
+          })}
+        </div>
       </div>
     //   rows.map((row: any, index:number) => {
     //     const rowObject: any = {}
