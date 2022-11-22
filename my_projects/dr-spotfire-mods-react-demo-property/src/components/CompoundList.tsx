@@ -24,7 +24,7 @@ class CompoundList extends React.Component<any, any> {
                   flexDirection: "column",
                   justifyContent: "center",
                   border: "1px solid #5FA920",
-                  borderRadius: "16px;",
+                  borderRadius: "16px",
                   padding: "8px 8px"
                   }}>
         <div
@@ -36,9 +36,18 @@ class CompoundList extends React.Component<any, any> {
           {propertiesObject.data.pop().attributes.products.map((item:any) => {
             const itemKeys = Object.keys(item)
             return itemKeys.map((key:any) => {
-              return key === "actualMass" || key === "purity" || key ===  'rxnid'
-              ?
-              <p style={{fontFamily: "Roboto", fontSize: "14px"}}><strong>{key}</strong>: {item[key]}</p> : null
+              if (key === "actualMass") {
+                return <p style={{ fontFamily: "Roboto", fontSize: "0.8rem" }}><strong>Actual Mass</strong>: {item[key]}</p>
+              }
+              else if (key === "purity") {
+                return <p style={{ fontFamily: "Roboto", fontSize: "0.8rem" }}><strong>Purity</strong>: {item[key]}</p>
+              }
+              else if (key === 'rxnid') {
+                return <p style={{ fontFamily: "Roboto", fontSize: "0.8rem" }}><strong>Reaction ID</strong>: {item[key]}</p>
+                }
+              // return key === "actualMass" || key === "purity" || key ===  'rxnid'
+              // ?
+              // <p style={{fontFamily: "Roboto", fontSize: "0.8rem"}}><strong>{key}</strong>: {item[key]}</p> : null
             })
           })}
         </div>
