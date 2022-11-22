@@ -24,6 +24,8 @@ window.Spotfire.initialize(async (mod) => {
       let signalsProperties = properties.find(item => item.name === "response")
       let signalsPropertiesVal = signalsProperties?.value()
 
+      let signalsImage = properties.find(item => item.name === "encodedImage")
+      let signalsImageVal = signalsImage?.value()
       // console.log(properties[14].value())
       // showing info of marked part of table, may use later
       // rows?.forEach((item, index) => {
@@ -37,7 +39,8 @@ window.Spotfire.initialize(async (mod) => {
                     showProperties,
                     rows,
                     axes,
-                    signalsPropertiesVal
+                    signalsPropertiesVal,
+                    signalsImageVal
                 }}
             />,
             root
