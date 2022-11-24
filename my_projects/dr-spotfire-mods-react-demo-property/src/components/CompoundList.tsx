@@ -29,7 +29,7 @@ class CompoundList extends React.Component<any, any> {
                   }}>
         <div
           dangerouslySetInnerHTML=
-            {{ __html: signalsImageVal.toString().replace(/\\n/g, ' ').replace(/b'/g, ' ').replace(/width="\d+px"/g, " ").replace(/height="\d+px"/g, " ") }}
+            {{ __html: signalsImageVal.toString().replace(/\\n/g, ' ').replace(/b'/g, ' ').replace(/width="\d+px"/g, `width="${window.innerWidth * 0.8}px"`).replace(/height="\d+px"/g, `height="${window.innerHeight * 0.8}px"`) }}
         >
         </div>
         <div style={{display: "flex", justifyContent: "space-evenly"}}>

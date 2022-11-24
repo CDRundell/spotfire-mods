@@ -135,7 +135,14 @@ body {
     }
   }
 
-  div > svg {
-    width: 60vw;
-    height: 60vh;
+
+
+  div > img {
+    width: 50vw;
+    height: 50vh;
   }
+
+  div svg {
+      width: 60vw;
+      height: 60vh;
+    }

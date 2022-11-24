@@ -6,7 +6,7 @@ class Header extends React.Component<any> {
     return (
       <div style={{ display: "flex", justifyContent: "space-between" }} >
         <img src={this.logo} style={{width: "60px", height: "60px"}}></img>
-        <h2 style={{fontFamily:"Roboto", paddingRight:"8px"}}>Signals Notebook Mod</h2>
+        <h2 style={{fontFamily:"Roboto", paddingRight:"8px"}}>Signals Notebook Mod Beta (v1.0)</h2>
       </div>
     )
   }
