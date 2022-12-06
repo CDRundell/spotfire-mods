@@ -8,7 +8,7 @@ class Postbox extends React.Component <any> {
 
   render () {
     return (
-      <button onClick={this.clickHandler}>Push Value to Notebook</button>
+      <button onClick={this.clickHandler}>Push Value (from Z axis) to Notebook</button>
     )
   }
 }
