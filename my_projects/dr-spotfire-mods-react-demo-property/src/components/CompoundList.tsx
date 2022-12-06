@@ -12,7 +12,6 @@ class CompoundList extends React.Component<any, any> {
     return row.categorical(axisName).value()[0].key
   }
 
-
   render() {
     // const { rows, axes, searchQuery} = this.props
     const { signalsPropertiesVal, signalsImageVal } = this.props

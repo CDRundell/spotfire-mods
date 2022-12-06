@@ -12,31 +12,10 @@
     }
   ],
   "dataViewDefinition": {
-    "colorAxis": {
-      "mode": "dual",
-      "dropTarget": {
-        "icon": "Color",
-        "description": "Color by {0}"
-      }
-    },
     "axes": [
       {
-        "name": "X",
-        "mode": "dual",
-        "placement": "none",
-        "dropTarget": {
-          "icon": "XAxis3D",
-          "description": "Use {0} on the mod's X-axis"
-        }
-      },
-      {
-        "name": "Y",
-        "mode": "dual",
-        "placement": "none"
-      },
-      {
         "name": "Z",
-        "mode": "dual",
+        "mode": "categorical",
         "placement": "none"
       }
     ]

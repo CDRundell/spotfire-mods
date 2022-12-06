@@ -16,7 +16,6 @@ const root = document.querySelector("#app");
 window.Spotfire.initialize(async (mod) => {
     let context = mod.getRenderContext();
     let reader = mod.createReader(mod.visualization.data(), mod.document.properties(), mod.property("propertyName"));
-    // mod.document.property("payload").then(response => console.log(response.value()))
 
     reader.subscribe(async function render(dataView: DataView, properties: AnalysisProperty[], currentProperty: ModProperty ) {
       const axes = await dataView.axes()
@@ -27,47 +26,36 @@ window.Spotfire.initialize(async (mod) => {
 
       let signalsImage = properties.find(item => item.name === "encodedImage")
       let signalsImageVal = signalsImage?.value()
-      // console.log(properties[14].value())
+      let table = await mod.visualization.mainTable()
+      let cols = await table.columns()
+      const zed = await mod.visualization.axis('Z')
+      const displayName = zed.parts[0].displayName
+
+
       // showing info of marked part of table, may use later
       // rows?.forEach((item, index) => {
-      //   item.isMarked() ? console.log(item.leafNode("Z")) : null
+      //   item.isMarked() ? console.log(item.leafNode("Z")?.value()) : null
       // })
-      let document = mod.document
 
         ReactDOM.render(
             <App
                 {...{
                     properties: properties,
                     currentProperty: currentProperty.value() + "",
-                    // showProperties,
                     rows,
                     axes,
                     signalsPropertiesVal,
                     signalsImageVal,
-                    document
-                }}
+                    document,
+                    cols,
+                    dataView,
+                    displayName
+                }
+              }
             />,
             root
         );
 
         context.signalRenderComplete();
-
-        // async function showProperties(x: number, y: number) {
-        //     let value = await mod.controls.contextMenu.show(
-        //         x,
-        //         y,
-        //         properties.map((p) => {
-        //             return {
-        //                 enabled: true,
-        //                 text: p.name,
-        //                 checked: currentProperty.value() == p.name,
-        //             };
-        //         })
-        //     );
-
-        //     if (value) {
-        //         currentProperty.set(value.text);
-        //     }
-        // }
     });
 });
