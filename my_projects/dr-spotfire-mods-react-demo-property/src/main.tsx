@@ -28,9 +28,9 @@ window.Spotfire.initialize(async (mod) => {
       let signalsImageVal = signalsImage?.value()
       let table = await mod.visualization.mainTable()
       let cols = await table.columns()
+
       const zed = await mod.visualization.axis('Z')
       const displayName = zed.parts[0].displayName
-
 
       // showing info of marked part of table, may use later
       // rows?.forEach((item, index) => {

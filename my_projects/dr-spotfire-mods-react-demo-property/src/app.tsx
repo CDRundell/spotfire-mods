@@ -16,9 +16,14 @@ export interface AppProps {
 class App extends React.Component <AppProps> {
 
   updateDocumentProperties = () => {
+
+      const val = this.props.rows?.filter((item:any) => {
+        return item.isMarked()
+      })
+
     const payloadObject = {
       name: this.props.displayName,
-      value: parseInt(this.props.rows.pop().categorical("Z").value()[0].key)
+      value: parseInt(val.pop().leafNode("Z")?.value())
     }
 
     if (typeof payloadObject.value === "number") {
