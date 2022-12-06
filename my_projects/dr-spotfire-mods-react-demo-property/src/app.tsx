@@ -2,7 +2,7 @@ import React from "react";
 import { AnalysisProperty } from "spotfire-api";
 import { CompoundList } from './components/CompoundList'
 import { Header } from './components/Header'
-import { Postbox } from './components/Postbox'
+import { Postbutton } from './components/Postbutton'
 
 export interface AppProps {
     currentProperty: string;
@@ -16,7 +16,6 @@ export interface AppProps {
 class App extends React.Component <AppProps> {
 
   updateDocumentProperties = () => {
-
       const val = this.props.rows?.filter((item:any) => {
         return item.isMarked()
       })
@@ -34,13 +33,12 @@ class App extends React.Component <AppProps> {
     }
   }
 
-
   render () {
     return (
       <div style={{ textAlign: "center" }}>
         <Header />
         <CompoundList {...this.props} {...this.state} />
-        <Postbox {...this.props} propertiesFunction={this.updateDocumentProperties}  />
+        <Postbutton {...this.props} propertiesFunction={this.updateDocumentProperties}  />
       </div>
 
     )

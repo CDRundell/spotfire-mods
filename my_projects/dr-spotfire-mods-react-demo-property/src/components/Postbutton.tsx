@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Postbox extends React.Component <any> {
+class Postbutton extends React.Component <any> {
 
   clickHandler = () => {
     this.props.propertiesFunction()
@@ -13,4 +13,4 @@ class Postbox extends React.Component <any> {
   }
 }
 
-export { Postbox };
+export { Postbutton };
