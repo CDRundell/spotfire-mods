@@ -350,7 +350,14 @@ Spotfire.initialize(async (mod) => {
             let bar = createDiv("bar");
 
             let totalBarValue = sumValue(rows, "Y");
-            bar.style.height = Math.round((totalBarValue / maxYValue) * canvasHeight) + "px";
+            let height = (totalBarValue / maxYValue) * canvasHeight
+            bar.style.height = Math.round(height) + "px";
+            let vh = window.innerHeight - 20
+            // console.log(maxYValue)
+            let backgroundImage = `linear-gradient(0deg,hsl(240deg 100% 20%) ${Math.round(vh * 0)}px, hsl(289deg 100% 21%) ${Math.round(vh * 0.11)}px, hsl(315deg 100% 27%) ${Math.round(vh * 0.22)}px, hsl(329deg 100% 36%) ${Math.round(vh * 0.33)}px, hsl(337deg 100% 43%) ${Math.round(vh * 0.44)}px, hsl(357deg 91% 59%) ${Math.round(vh * 0.56)}px, hsl(17deg 100% 59%) ${Math.round(vh * 0.67)}px, hsl(34deg 100% 53%) ${Math.round(vh * 0.78)}px, hsl(45deg 100% 50%) ${Math.round(vh * 0.89)}px, hsl(55deg 100% 50%) ${Math.round(vh * 1)}px)`
+            bar.style.backgroundImage = backgroundImage
+            // console.log(bar.style.backgroundImage)
+
 
             rows.forEach((row) => {
                 let y = row.continuous("Y");

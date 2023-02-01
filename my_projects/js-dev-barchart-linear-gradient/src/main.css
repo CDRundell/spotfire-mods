@@ -47,7 +47,7 @@ body {
   border-radius: 4px 4px 0 0;
   text-align: center;
   overflow: hidden;
-  background-image: linear-gradient(0deg,
+  /* background-image: linear-gradient(0deg,
       hsl(240deg 100% 20%) 0%,
       hsl(289deg 100% 21%) 11%,
       hsl(315deg 100% 27%) 22%,
@@ -57,7 +57,7 @@ body {
       hsl(17deg 100% 59%) 67%,
       hsl(34deg 100% 53%) 78%,
       hsl(45deg 100% 50%) 89%,
-      hsl(55deg 100% 50%) 100%) !important;
+      hsl(55deg 100% 50%) 100%) !important; */
 }
 
 .bar:hover {
