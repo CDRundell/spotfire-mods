@@ -22,6 +22,7 @@ Spotfire.initialize(async (mod) => {
         mod.property("y-axis-mode"),
         mod.property("split-bars"),
         mod.visualization.axis("Y"),
+        mod.visualization.axis("X"),
         mod.windowSize()
     );
 
@@ -235,6 +236,9 @@ Spotfire.initialize(async (mod) => {
         xScaleDiv.style.bottom = "0px";
         xScaleDiv.style.right = "0px";
         xScaleDiv.style.top = "unset";
+        // xScaleDiv.style.display = 'flex';
+        // xScaleDiv.style.justifyContent = 'space-between';
+        // xScaleDiv.style.width = `${yScaleWidth} px`
 
         if (stroke === "none") {
             xScaleDiv.style.borderWidth = "0px";
@@ -353,21 +357,39 @@ Spotfire.initialize(async (mod) => {
             let height = (totalBarValue / maxYValue) * canvasHeight
             bar.style.height = Math.round(height) + "px";
             let vh = window.innerHeight - 20
-            // console.log(maxYValue)
             let backgroundImage = `linear-gradient(0deg,hsl(240deg 100% 20%) ${Math.round(vh * 0)}px, hsl(289deg 100% 21%) ${Math.round(vh * 0.11)}px, hsl(315deg 100% 27%) ${Math.round(vh * 0.22)}px, hsl(329deg 100% 36%) ${Math.round(vh * 0.33)}px, hsl(337deg 100% 43%) ${Math.round(vh * 0.44)}px, hsl(357deg 91% 59%) ${Math.round(vh * 0.56)}px, hsl(17deg 100% 59%) ${Math.round(vh * 0.67)}px, hsl(34deg 100% 53%) ${Math.round(vh * 0.78)}px, hsl(45deg 100% 50%) ${Math.round(vh * 0.89)}px, hsl(55deg 100% 50%) ${Math.round(vh * 1)}px)`
             bar.style.backgroundImage = backgroundImage
-            // console.log(bar.style.backgroundImage)
 
+            // function emptyDiv() {
+            //   let xSegment = createDiv("xSegment");
+            //   xSegment.innerText = ""
+            //   xSegment.style.backgroundColor = "peachpuff"
+            //   xSegment.style.flexGrow = "1"
+            //   xSegment.style.flexShrink = "1"
+            //   xSegment.style.maxWidth = `${xScaleDiv.clientWidth / 2 } px`
+            //   xScaleDiv.appendChild(xSegment)
+            // }
+            // rows.length < 2 && emptyDiv()
 
-            rows.forEach((row) => {
+            // function filledDiv() {
+            //   const rowName = xLeafNode.key
+            //   xScaleDiv.insertAdjacentHTML('beforeend', `<div class="xSegment" style="font-size: 12px; color: black; font: roboto; flex-grow: 1; flex-shrink: 1; flex-grow: 3; text-align: center; width: fit-content; text-align: center; overflow: hidden; white-space: nowrap: text-overflow: ellipsis; width: ${xScaleDiv.clientWidth}px; transform: rotate(-90deg);">${rowName}</div>`)
+            //   xScaleDiv.style.textOverflow = "ellipsis"
+            // }
+
+            rows.forEach((row, index) => {
                 let y = row.continuous("Y");
                 if (y.value() === null) {
                     return;
                 }
+                const rowName = xLeafNode.key
 
                 let segment = createDiv("segment");
                 segment.style.height = (+y.value() / maxYValue) * canvasHeight + "px";
                 segment.style.backgroundColor = row.color().hexCode;
+                bar.style.display = 'flex';
+                bar.style.flexDirection = 'column-reverse';
+                bar.innerHTML = `<p class="bar-tag" style="font-family: roboto; position: relative; opacity: 0.9; top: 28px; color: gray; border-radius: 8px; white-space: nowrap; text-overflow: ellipsis;">${rowName}</p>`
 
                 segment.onmouseover = (e) => {
                     mod.controls.tooltip.show(row);
@@ -386,10 +408,10 @@ Spotfire.initialize(async (mod) => {
                     }
                 };
 
-                bar.appendChild(segment);
+              bar.appendChild(segment);
+              // filledDiv()
             });
-
-            return bar;
+        return bar;
         }
     }
 });
